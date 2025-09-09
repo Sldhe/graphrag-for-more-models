@@ -18,7 +18,7 @@ import tiktoken
 
 #需要使用的模型名称，在这打补丁，形如：
 #The model you want to use, like:
-tiktoken.model.MODEL_TO_ENCODING["your_model"] = "cl100k_base"
+#tiktoken.model.MODEL_TO_ENCODING["your_model"] = "cl100k_base"
 
 INVALID_METHOD_ERROR = "Invalid method"
 
