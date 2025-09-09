@@ -69,6 +69,7 @@ class OneAPIChatLLM:
         """
         兼容 Graphrag 的流式接口。这里先不做真正的 stream，
         而是调用 achat 一次性拿结果，再 yield 出去。
+        别看了，代码能能运行就不错了（
         """
         response = await self.achat(prompt, history, **kwargs)
         yield response.output.content
