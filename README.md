@@ -1,5 +1,5 @@
 #大家好，这是我个人修改后的GraphRAG，只是增加了对one-api的适配，没做其它改动，详细教程请看
-[Deploy.md](https://github.com/Sldhe/graphrag-for-more-models/blob/main/Deploy.md).<br/>
+[DEPLOY.md](https://github.com/Sldhe/graphrag-for-more-models/blob/main/DEPLOY.md).<br/>
 下面是官方的README.md，我没改动
 
 # GraphRAG
