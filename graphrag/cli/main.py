@@ -16,10 +16,9 @@ from graphrag.prompt_tune.defaults import LIMIT, MAX_TOKEN_COUNT, N_SUBSET_MAX, 
 from graphrag.prompt_tune.types import DocSelectionType
 import tiktoken
 
-tiktoken.model.MODEL_TO_ENCODING["deepseek-ai/DeepSeek-R1-Distill-Qwen-32B"] = "cl100k_base"
-tiktoken.model.MODEL_TO_ENCODING["deepseek-ai/DeepSeek-V3.1"] = "cl100k_base"
-tiktoken.model.MODEL_TO_ENCODING["Qwen/Qwen3-235B-A22B-Instruct-2507"] = "cl100k_base"
-tiktoken.model.MODEL_TO_ENCODING["Qwen/Qwen3-Embedding-4B"] = "cl100k_base"
+#需要使用的模型名称，在这打补丁，
+形如tiktoken.model.MODEL_TO_ENCODING["your_model"] = "cl100k_base"
+
 INVALID_METHOD_ERROR = "Invalid method"
 
 app = typer.Typer(
