@@ -11,12 +11,12 @@
 5. 创建仓库
    ```bash
    mkdir -p ./ragtest/input
-   bash
+   ```
 
 6.初始化仓库
    ```bash
    graphrag init --root ./ragtest
-bash
+```
 
 7.修改配置
 初始化后仓库里会出现 settings.yaml 文件，把里面的参数改为：
@@ -27,7 +27,7 @@ default_embedding_model:
   type: oneapi-embedding
 api_base: http://你的-one-api-地址
 # 模型自定义（必须是在第4步打过补丁的，或者项目本身支持的）
-yaml
+```
 
 8.在仓库的 input/ 中放入需要构建索引的文件
 （官方文档说支持 txt、csv、json），可以用官方示例
@@ -35,7 +35,7 @@ yaml
 9.构建索引
    ```bash
    graphrag index --root ./ragtest
-bash
+```
 
 10.查询
    ```bash
@@ -43,11 +43,11 @@ bash
   --root ./ragtest \
   --method global \
   --query "你的问题?"
-bash
+```
 11.如果生成社区报告有问题，看看日志，可能是格式有问题。
 可以在 `prompts/community_report_graph.txt` 和 `prompts/community_report_text.txt` 末尾加上：
    ```yaml
    Return output as a JSON object only.
    Do not include code fences, explanations, or extra text.
    Output must be valid JSON.
-yaml
+```
