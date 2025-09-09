@@ -16,8 +16,9 @@ from graphrag.prompt_tune.defaults import LIMIT, MAX_TOKEN_COUNT, N_SUBSET_MAX, 
 from graphrag.prompt_tune.types import DocSelectionType
 import tiktoken
 
-#需要使用的模型名称，在这打补丁，
-形如tiktoken.model.MODEL_TO_ENCODING["your_model"] = "cl100k_base"
+#需要使用的模型名称，在这打补丁，形如：
+#The model you want to use, like:
+tiktoken.model.MODEL_TO_ENCODING["your_model"] = "cl100k_base"
 
 INVALID_METHOD_ERROR = "Invalid method"
 
