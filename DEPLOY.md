@@ -18,7 +18,7 @@ mkdir -p ./ragtest/input
 graphrag init --root ./ragtest
 ```
 
-7.修改配置
+7.修改配置 
 初始化后仓库里会出现 settings.yaml 文件，把里面的参数改为：
 ```yaml
 default_chat_model:
