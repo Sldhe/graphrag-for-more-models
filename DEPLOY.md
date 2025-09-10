@@ -21,12 +21,10 @@ graphrag init --root ./ragtest
 7.修改配置 
 初始化后仓库里会出现 settings.yaml 文件，把里面的参数改为：
 ```yaml
-default_chat_model:
-  type: oneapi-chat
-default_embedding_model:
-  type: oneapi-embedding
+type: oneapi-chat
+type: oneapi-embedding
 api_base: http://你的-one-api-地址
-# 模型自定义（必须是在第4步打过补丁的，或者项目本身支持的）
+# model模型自定义（必须是在第4步打过补丁的，或者项目本身支持的）
 ```
 
 8.在仓库的 input/ 中放入需要构建索引的文件
