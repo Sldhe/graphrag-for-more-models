@@ -51,3 +51,4 @@ Return output as a JSON object only.
 Do not include code fences, explanations, or extra text.
 Output must be valid JSON.
 ```
+以及如果想让图谱语言为中文，也是更改prompt，比如把graph里面的English改为Chinese
