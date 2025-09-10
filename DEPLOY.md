@@ -23,7 +23,7 @@ graphrag init --root ./ragtest
 ```yaml
 type: oneapi-chat
 type: oneapi-embedding
-api_base: http://你的-one-api-地址
+api_base: http://你的-one-api-地址  //不需要加v1，如果是本地部署就是http://localhost:端口
 # model模型自定义（必须是在第4步打过补丁的，或者项目本身支持的）
 ```
 
@@ -49,4 +49,4 @@ Return output as a JSON object only.
 Do not include code fences, explanations, or extra text.
 Output must be valid JSON.
 ```
-以及如果想让图谱语言为中文，也是更改prompt，比如把graph里面的English改为Chinese
+以及如果想让图谱语言为中文，也是更改prompt，比如把graph相关prompt里面的English改为Chinese
