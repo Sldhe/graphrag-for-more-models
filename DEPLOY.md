@@ -1,7 +1,7 @@
 1. 确认 python 版本，建议使用 conda 虚拟环境安装 **python3.11**  
 （官方文档说是 3.10–3.12，我没试过应该也可以），conda 教程这里就不讲了（并非偷懒，bushi
 
-2. 安装 poetry，不同系统方法不同这里就不细说了
+2. 安装 poetry，不同系统方法不同这里就不细说了。然后在项目根目录`poetry install`
 
 3. 部署 one-api  
 👉 [one-api 项目地址](https://github.com/songquanpeng/one-api)
