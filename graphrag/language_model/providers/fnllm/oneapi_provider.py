@@ -66,13 +66,51 @@ class OneAPIChatLLM:
         )
 
     async def achat_stream(self, prompt: str, history: list | None = None, **kwargs: Any) -> AsyncGenerator[str, None]:
-        """
-        兼容 Graphrag 的流式接口。这里先不做真正的 stream，
-        而是调用 achat 一次性拿结果，再 yield 出去。
-        别看了，代码能能运行就不错了（
-        """
-        response = await self.achat(prompt, history, **kwargs)
-        yield response.output.content
+        """Stream responses from the OneAPI chat completions endpoint."""
+        headers = {"Authorization": f"Bearer {self.api_key}", "Accept": "text/event-stream"}
+        messages = list(history or [])
+        messages.append({"role": "user", "content": prompt})
+
+        payload = {"model": self.model, "messages": messages, "stream": True}
+        timeout = httpx.Timeout(self.timeout)
+
+        async with httpx.AsyncClient(timeout=timeout) as client:
+            async with client.stream("POST", f"{self.api_base}/v1/chat/completions", headers=headers, json=payload) as response:
+                try:
+                    response.raise_for_status()
+                except httpx.HTTPStatusError as exc:
+                    error_text = await response.aread()
+                    if isinstance(error_text, (bytes, bytearray)):
+                        error_body = error_text.decode("utf-8", "ignore")
+                    else:
+                        error_body = str(error_text)
+                    raise ValueError(f"Streaming request failed: {exc.response.status_code} - {error_body}") from exc
+
+                async for line in response.aiter_lines():
+                    if not line:
+                        continue
+                    if not line.startswith("data:"):
+                        continue
+
+                    data = line[5:].strip()
+                    if not data:
+                        continue
+                    if data == "[DONE]":
+                        break
+
+                    try:
+                        chunk = json.loads(data)
+                    except json.JSONDecodeError:
+                        continue
+
+                    choices = chunk.get("choices")
+                    if not choices:
+                        continue
+
+                    delta = choices[0].get("delta") or choices[0].get("message") or {}
+                    content = delta.get("content")
+                    if content is not None:
+                        yield content
 
     def chat(self, prompt: str, history: list | None = None, **kwargs: Any) -> ModelResponse:
         import anyio
